@@ -1,0 +1,447 @@
+{
+	"info": {
+		"_postman_id": "d9bb3bd0-dc6c-4ef6-b2cc-a8603e92d74e",
+		"name": "Trello",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "all Boards",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.environment.get(\"variable_key\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}members/me/boards?key={{api-key}}&token={{token}}",
+					"host": [
+						"{{url}}members"
+					],
+					"path": [
+						"me",
+						"boards"
+					],
+					"query": [
+						{
+							"key": "key",
+							"value": "{{api-key}}"
+						},
+						{
+							"key": "token",
+							"value": "{{token}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "a Board",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{url}}boards/61589a76c26d7442e148dc05/?key={{api-key}}&token={{token}}",
+					"host": [
+						"{{url}}boards"
+					],
+					"path": [
+						"61589a76c26d7442e148dc05",
+						""
+					],
+					"query": [
+						{
+							"key": "key",
+							"value": "{{api-key}}"
+						},
+						{
+							"key": "token",
+							"value": "{{token}}"
+						}
+					]
+				},
+				"description": "delete board"
+			},
+			"response": []
+		},
+		{
+			"name": "a Card",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\":\"6158aa79bb44248f0e75245d\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}cards/6158aa79bb44248f0e75245d/?key={{api-key}}&token={{token}}",
+					"host": [
+						"{{url}}cards"
+					],
+					"path": [
+						"6158aa79bb44248f0e75245d",
+						""
+					],
+					"query": [
+						{
+							"key": "key",
+							"value": "{{api-key}}"
+						},
+						{
+							"key": "token",
+							"value": "{{token}}"
+						}
+					]
+				},
+				"description": "delete board"
+			},
+			"response": []
+		},
+		{
+			"name": "a List",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.environment.get(\"variable_key\");\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\":\"6158ac66e0ca04128d60a1c6\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}lists/6158ac66e0ca04128d60a1c6/?key={{api-key}}&token={{token}}",
+					"host": [
+						"{{url}}lists"
+					],
+					"path": [
+						"6158ac66e0ca04128d60a1c6",
+						""
+					],
+					"query": [
+						{
+							"key": "key",
+							"value": "{{api-key}}"
+						},
+						{
+							"key": "token",
+							"value": "{{token}}"
+						}
+					]
+				},
+				"description": "delete board"
+			},
+			"response": []
+		},
+		{
+			"name": "Create a Board",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.environment.get(\"variable_key\");\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"My new board\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}boards?key={{api-key}}&token={{token}}",
+					"host": [
+						"{{url}}boards"
+					],
+					"query": [
+						{
+							"key": "key",
+							"value": "{{api-key}}"
+						},
+						{
+							"key": "token",
+							"value": "{{token}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create a List",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"My new List\",\r\n    \"idBoard\": \"61589aa634554182356e00ae\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}lists?key={{api-key}}&token={{token}}",
+					"host": [
+						"{{url}}lists"
+					],
+					"query": [
+						{
+							"key": "key",
+							"value": "{{api-key}}"
+						},
+						{
+							"key": "token",
+							"value": "{{token}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create a Card",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"idList\": \"6158a8bb85410f55cafde32f\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}cards?key={{api-key}}&token={{token}}",
+					"host": [
+						"{{url}}cards"
+					],
+					"query": [
+						{
+							"key": "key",
+							"value": "{{api-key}}"
+						},
+						{
+							"key": "token",
+							"value": "{{token}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "a Board",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}boards/61589aa634554182356e00ae?key={{api-key}}&token={{token}}",
+					"host": [
+						"{{url}}boards"
+					],
+					"path": [
+						"61589aa634554182356e00ae"
+					],
+					"query": [
+						{
+							"key": "key",
+							"value": "{{api-key}}"
+						},
+						{
+							"key": "token",
+							"value": "{{token}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "a Card",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\":\"6158aaf17d052a8b78881207\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}cards/6158aaf17d052a8b78881207?key={{api-key}}&token={{token}}",
+					"host": [
+						"{{url}}cards"
+					],
+					"path": [
+						"6158aaf17d052a8b78881207"
+					],
+					"query": [
+						{
+							"key": "key",
+							"value": "{{api-key}}"
+						},
+						{
+							"key": "token",
+							"value": "{{token}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "a List",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\":\"6158ab4d3f92e94d6aa66b46\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}lists/6158ab4d3f92e94d6aa66b46?key={{api-key}}&token={{token}}",
+					"host": [
+						"{{url}}lists"
+					],
+					"path": [
+						"6158ab4d3f92e94d6aa66b46"
+					],
+					"query": [
+						{
+							"key": "key",
+							"value": "{{api-key}}"
+						},
+						{
+							"key": "token",
+							"value": "{{token}}"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "apikey",
+		"apikey": [
+			{
+				"key": "key",
+				"value": "",
+				"type": "string"
+			},
+			{
+				"key": "value",
+				"value": "",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "url",
+			"value": "https://trello.com/1/"
+		},
+		{
+			"key": "api-key",
+			"value": ""
+		},
+		{
+			"key": "token",
+			"value": ""
+		}
+	]
+}
