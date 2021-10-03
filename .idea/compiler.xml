@@ -11,7 +11,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="AleksandrIablonskikhAPI" target="1.5" />
+      <module name="AleksandrIablonskikhAPI" target="8" />
     </bytecodeTargetLevel>
   </component>
 </project>
