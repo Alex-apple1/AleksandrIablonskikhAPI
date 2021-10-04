@@ -22,13 +22,9 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{url}}members/me/boards?key={{api-key}}&token={{token}}",
+					"raw": "{{url}}{{allBoards}}?key={{api-key}}&token={{token}}",
 					"host": [
-						"{{url}}members"
-					],
-					"path": [
-						"me",
-						"boards"
+						"{{url}}{{allBoards}}"
 					],
 					"query": [
 						{
