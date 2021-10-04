@@ -1,12 +1,11 @@
 package hw9.service;
 
-import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import hw9.dto.TrelloDto;
+import hw9.entities.Board;
 import io.restassured.http.Method;
 import io.restassured.response.Response;
-import java.util.HashMap;
 import java.util.Map;
+
 
 public class BoardService extends CommonService{
 
