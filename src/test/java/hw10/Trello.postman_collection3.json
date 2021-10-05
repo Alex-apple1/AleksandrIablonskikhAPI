@@ -12,10 +12,8 @@
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.environment.get(\"variable_key\");\r",
-							"pm.test(\"Status code is 200\", function () {\r",
-							"    pm.response.to.have.status(200);\r",
-							"});"
+							"var jsonData = JSON.parse(responseBody);\r",
+							"postman.setEnvironmentVariable ('paramsVal', jsonData.id);"
 						],
 						"type": "text/javascript"
 					}
@@ -338,12 +336,12 @@
 					}
 				},
 				"url": {
-					"raw": "{{url}}cards/{{idCardToDelete}}/?key={{api-key}}&token={{token}}",
+					"raw": "{{url}}cards/{{idCard}}/?key={{api-key}}&token={{token}}",
 					"host": [
 						"{{url}}cards"
 					],
 					"path": [
-						"{{idCardToDelete}}",
+						"{{idCard}}",
 						""
 					],
 					"query": [
@@ -367,12 +365,12 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "{{url}}boards/61589a76c26d7442e148dc05/?key={{api-key}}&token={{token}}",
+					"raw": "{{url}}boards/{{idBoard}}/?key={{api-key}}&token={{token}}",
 					"host": [
 						"{{url}}boards"
 					],
 					"path": [
-						"61589a76c26d7442e148dc05",
+						"{{idBoard}}",
 						""
 					],
 					"query": [
