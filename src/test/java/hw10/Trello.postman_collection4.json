@@ -328,7 +328,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"id\":\"{{idCardToDelete}}\"\r\n}",
+					"raw": "{\r\n    \"id\":\"{{idCard}}\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
