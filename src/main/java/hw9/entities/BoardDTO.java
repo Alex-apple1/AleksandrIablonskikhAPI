@@ -5,8 +5,8 @@ package hw9.entities;
 import lombok.Data;
 
 @Data
-public class Board {
-    public static final String NAME = "My new test board";
+public class BoardDTO {
+    public static final String NAME = "New test board";
 
     private String id;
     private String name;

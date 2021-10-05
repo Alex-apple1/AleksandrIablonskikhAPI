@@ -2,11 +2,11 @@ package hw9.assertions;
 
 import static org.testng.Assert.assertEquals;
 
-import hw9.entities.List;
+import hw9.entities.ListDTO;
 
 public class ListAssertions {
 
-    public void verifyListName(List list, String expected) {
-        assertEquals(list.getName(), expected);
+    public void verifyListName(ListDTO listDTO, String expected) {
+        assertEquals(listDTO.getName(), expected);
     }
 }
