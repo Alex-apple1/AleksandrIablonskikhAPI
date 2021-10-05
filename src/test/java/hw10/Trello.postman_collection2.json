@@ -6,6 +6,119 @@
 	},
 	"item": [
 		{
+			"name": "Create a Board",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.environment.get(\"variable_key\");\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"{{boardName}}\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}boards?key={{api-key}}&token={{token}}",
+					"host": [
+						"{{url}}boards"
+					],
+					"query": [
+						{
+							"key": "key",
+							"value": "{{api-key}}"
+						},
+						{
+							"key": "token",
+							"value": "{{token}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create a List",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"{{listName}}\",\r\n    \"idBoard\": \"{{idBoard}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}lists?key={{api-key}}&token={{token}}",
+					"host": [
+						"{{url}}lists"
+					],
+					"query": [
+						{
+							"key": "key",
+							"value": "{{api-key}}"
+						},
+						{
+							"key": "token",
+							"value": "{{token}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create a Card",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"idList\": \"{{idList}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}cards?key={{api-key}}&token={{token}}",
+					"host": [
+						"{{url}}cards"
+					],
+					"query": [
+						{
+							"key": "key",
+							"value": "{{api-key}}"
+						},
+						{
+							"key": "token",
+							"value": "{{token}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "all Boards",
 			"event": [
 				{
@@ -42,17 +155,29 @@
 		},
 		{
 			"name": "a Board",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
-				"method": "DELETE",
+				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{url}}boards/61589a76c26d7442e148dc05/?key={{api-key}}&token={{token}}",
+					"raw": "{{url}}boards/{{idBoard}}?key={{api-key}}&token={{token}}",
 					"host": [
 						"{{url}}boards"
 					],
 					"path": [
-						"61589a76c26d7442e148dc05",
-						""
+						"{{idBoard}}"
 					],
 					"query": [
 						{
@@ -64,19 +189,21 @@
 							"value": "{{token}}"
 						}
 					]
-				},
-				"description": "delete board"
+				}
 			},
 			"response": []
 		},
 		{
 			"name": "a Card",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
 			"request": {
-				"method": "DELETE",
+				"method": "GET",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"id\":\"6158aa79bb44248f0e75245d\"\r\n}",
+					"raw": "{\r\n    \"id\":\"{{idCard}}\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -84,13 +211,12 @@
 					}
 				},
 				"url": {
-					"raw": "{{url}}cards/6158aa79bb44248f0e75245d/?key={{api-key}}&token={{token}}",
+					"raw": "{{url}}cards/{{idCard}}?key={{api-key}}&token={{token}}",
 					"host": [
 						"{{url}}cards"
 					],
 					"path": [
-						"6158aa79bb44248f0e75245d",
-						""
+						"{{idCard}}"
 					],
 					"query": [
 						{
@@ -102,8 +228,46 @@
 							"value": "{{token}}"
 						}
 					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "a List",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\":\"{{idList}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
 				},
-				"description": "delete board"
+				"url": {
+					"raw": "{{url}}lists/{{idList}}?key={{api-key}}&token={{token}}",
+					"host": [
+						"{{url}}lists"
+					],
+					"path": [
+						"{{idList}}"
+					],
+					"query": [
+						{
+							"key": "key",
+							"value": "{{api-key}}"
+						},
+						{
+							"key": "token",
+							"value": "{{token}}"
+						}
+					]
+				}
 			},
 			"response": []
 		},
@@ -128,7 +292,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"id\":\"6158ac66e0ca04128d60a1c6\"\r\n}",
+					"raw": "{\r\n    \"id\":\"{{idList}}\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -136,12 +300,12 @@
 					}
 				},
 				"url": {
-					"raw": "{{url}}lists/6158ac66e0ca04128d60a1c6/?key={{api-key}}&token={{token}}",
+					"raw": "{{url}}lists/{{idList}}/?key={{api-key}}&token={{token}}",
 					"host": [
 						"{{url}}lists"
 					],
 					"path": [
-						"6158ac66e0ca04128d60a1c6",
+						"{{idList}}",
 						""
 					],
 					"query": [
@@ -160,27 +324,13 @@
 			"response": []
 		},
 		{
-			"name": "Create a Board",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.environment.get(\"variable_key\");\r",
-							"pm.test(\"Status code is 200\", function () {\r",
-							"    pm.response.to.have.status(200);\r",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
+			"name": "a Card",
 			"request": {
-				"method": "POST",
+				"method": "DELETE",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"name\": \"My new board\"\r\n}\r\n",
+					"raw": "{\r\n    \"id\":\"{{idCardToDelete}}\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -188,76 +338,14 @@
 					}
 				},
 				"url": {
-					"raw": "{{url}}boards?key={{api-key}}&token={{token}}",
-					"host": [
-						"{{url}}boards"
-					],
-					"query": [
-						{
-							"key": "key",
-							"value": "{{api-key}}"
-						},
-						{
-							"key": "token",
-							"value": "{{token}}"
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Create a List",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"name\": \"My new List\",\r\n    \"idBoard\": \"61589aa634554182356e00ae\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{url}}lists?key={{api-key}}&token={{token}}",
-					"host": [
-						"{{url}}lists"
-					],
-					"query": [
-						{
-							"key": "key",
-							"value": "{{api-key}}"
-						},
-						{
-							"key": "token",
-							"value": "{{token}}"
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Create a Card",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"idList\": \"6158a8bb85410f55cafde32f\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{url}}cards?key={{api-key}}&token={{token}}",
+					"raw": "{{url}}cards/{{idCardToDelete}}/?key={{api-key}}&token={{token}}",
 					"host": [
 						"{{url}}cards"
 					],
+					"path": [
+						"{{idCardToDelete}}",
+						""
+					],
 					"query": [
 						{
 							"key": "key",
@@ -268,35 +356,24 @@
 							"value": "{{token}}"
 						}
 					]
-				}
+				},
+				"description": "delete board"
 			},
 			"response": []
 		},
 		{
 			"name": "a Board",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Status code is 200\", function () {\r",
-							"    pm.response.to.have.status(200);\r",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
 			"request": {
-				"method": "GET",
+				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "{{url}}boards/61589aa634554182356e00ae?key={{api-key}}&token={{token}}",
+					"raw": "{{url}}boards/61589a76c26d7442e148dc05/?key={{api-key}}&token={{token}}",
 					"host": [
 						"{{url}}boards"
 					],
 					"path": [
-						"61589aa634554182356e00ae"
+						"61589a76c26d7442e148dc05",
+						""
 					],
 					"query": [
 						{
@@ -308,85 +385,8 @@
 							"value": "{{token}}"
 						}
 					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "a Card",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "GET",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"id\":\"6158aaf17d052a8b78881207\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
 				},
-				"url": {
-					"raw": "{{url}}cards/6158aaf17d052a8b78881207?key={{api-key}}&token={{token}}",
-					"host": [
-						"{{url}}cards"
-					],
-					"path": [
-						"6158aaf17d052a8b78881207"
-					],
-					"query": [
-						{
-							"key": "key",
-							"value": "{{api-key}}"
-						},
-						{
-							"key": "token",
-							"value": "{{token}}"
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "a List",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "GET",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"id\":\"6158ab4d3f92e94d6aa66b46\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{url}}lists/6158ab4d3f92e94d6aa66b46?key={{api-key}}&token={{token}}",
-					"host": [
-						"{{url}}lists"
-					],
-					"path": [
-						"6158ab4d3f92e94d6aa66b46"
-					],
-					"query": [
-						{
-							"key": "key",
-							"value": "{{api-key}}"
-						},
-						{
-							"key": "token",
-							"value": "{{token}}"
-						}
-					]
-				}
+				"description": "delete board"
 			},
 			"response": []
 		}
