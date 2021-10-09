@@ -9,24 +9,24 @@ import java.util.Map;
 
 public class BoardService extends CommonService{
 
-    public BoardDTO parseBoard(Response rs) {
+    public BoardDTO parseBoard(Response response) {
         return new GsonBuilder().excludeFieldsWithModifiers().create()
-                                .fromJson(rs.getBody().asString(), BoardDTO.class);
+                                .fromJson(response.getBody().asString(), BoardDTO.class);
     }
 
     public BoardDTO createBoard(Map<String, String> parameters) {
-        return parseBoard(requestWithParams(Method.POST, BOARDS_END_POINT, parameters));
+        return parseBoard(getWithParams(Method.POST, BOARDS_END_POINT, parameters));
     }
 
     public BoardDTO getBoard(String boardID) {
-        return parseBoard(requestWithNoParams(Method.GET, BOARDS_END_POINT + boardID));
+        return parseBoard(getNoParams(Method.GET, BOARDS_END_POINT + boardID));
     }
 
     public BoardDTO updateBoard(Map<String, String> parameters, String boardID) {
-        return parseBoard(requestWithParams(Method.PUT, BOARDS_END_POINT + boardID, parameters));
+        return parseBoard(getWithParams(Method.PUT, BOARDS_END_POINT + boardID, parameters));
     }
 
     public Response deleteBoard(String boardID) {
-        return requestWithNoParams(Method.DELETE, BOARDS_END_POINT + boardID);
+        return getNoParams(Method.DELETE, BOARDS_END_POINT + boardID);
     }
 }

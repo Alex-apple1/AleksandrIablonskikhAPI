@@ -18,12 +18,12 @@ public class BoardTests extends BaseTest {
     @Test(description = "Create, delete and check if board is deleted test",
           dataProvider = "boardServiceDataProvider",
           dataProviderClass = DataProviders.class)
-    public void createDeleteCheckIfBoardIsDeletedTest(String anotherBoardName) {
+    public void createDeleteCheckIfBoardIsDeletedTest(String boardName) {
 
         String boardID = boardDTO.getId();
-        parameters.put("name", anotherBoardName);
+        parameters.put("name", boardName);
         boardDTO = boardService.updateBoard(parameters, boardID);
 
-        boardAssertions.assertBoardName(boardDTO, anotherBoardName);
+        boardAssertions.assertBoardName(boardDTO, boardName);
     }
 }

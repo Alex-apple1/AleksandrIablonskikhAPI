@@ -14,10 +14,19 @@ public class ListService extends CommonService{
     }
 
     public ListDTO createList(Map<String, String> parameters) {
-        return parseList(requestWithParams(Method.POST, LISTS_END_POINT, parameters));
+        return parseList(getWithParams(Method.POST, LISTS_END_POINT, parameters));
+    }
+
+    public ListDTO getList(String listID) {
+        return parseList(getNoParams(Method.GET, LISTS_END_POINT + listID));
     }
 
     public ListDTO updateList(String listID, Map<String, String> params) {
-        return parseList(requestWithParams(Method.PUT, LISTS_END_POINT + listID, params));
+        return parseList(getWithParams(Method.PUT, LISTS_END_POINT + listID, params));
     }
+
+    public Response deleteList(String listID, Map<String, String> params) {
+        return getNoParams(Method.DELETE, LISTS_END_POINT + listID);
+    }
+
 }

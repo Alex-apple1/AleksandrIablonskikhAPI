@@ -25,7 +25,7 @@ public class CommonService extends URI {
             .build();
     }
 
-    public Response requestWithNoParams(Method method, String path) {
+    public Response getNoParams(Method method, String path) {
         return
             given()
                 .spec(requestSpecification())
@@ -37,7 +37,7 @@ public class CommonService extends URI {
                 .response();
     }
 
-    public Response requestWithParams(Method method, String path, Map<String, String> parameters) {
+    public Response getWithParams(Method method, String path, Map<String, String> parameters) {
         return
             given()
                 .spec(requestSpecification())
