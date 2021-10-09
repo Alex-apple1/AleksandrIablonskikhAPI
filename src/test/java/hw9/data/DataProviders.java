@@ -6,7 +6,7 @@ public class DataProviders {
 
     @DataProvider(name = "boardServiceDataProvider")
     public static Object[][] boardServiceDataProvider() {
-        String secondBoardName = "My second test board";
+        String secondBoardName = "My second board";
         String thirdBoardName = "My third board";
         return new Object[][] {
             {secondBoardName},
