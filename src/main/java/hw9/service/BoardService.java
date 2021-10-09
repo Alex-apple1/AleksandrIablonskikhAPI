@@ -1,7 +1,7 @@
 package hw9.service;
 
 import com.google.gson.GsonBuilder;
-import hw9.entities.BoardDTO;
+import hw9.dto.BoardDTO;
 import io.restassured.http.Method;
 import io.restassured.response.Response;
 import java.util.Map;

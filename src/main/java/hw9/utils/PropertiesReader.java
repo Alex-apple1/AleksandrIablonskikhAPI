@@ -10,7 +10,8 @@ public class PropertiesReader {
 
     public static String getProperty(String key) {
 
-        try (FileInputStream fileInputStream = new FileInputStream("src/test/resources/test.properties")) {
+        try (FileInputStream fileInputStream = new FileInputStream(
+            "src/test/resources/test.properties")) {
             PROPERTIES = new Properties();
             PROPERTIES.load(fileInputStream);
         } catch (IOException e) {
