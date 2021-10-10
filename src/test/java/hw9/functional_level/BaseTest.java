@@ -24,16 +24,16 @@ public class BaseTest {
     public ListService listService = new ListService();
     public Map<String, String> bodyParametersForRegistration = new HashMap<>();
 
-//    @BeforeTest
-//    public void createBoard() {
-//        parameters.put("name", BoardDTO.NAME);
-//        boardDTO = boardService.createBoard(parameters);
-//        boardAssertions.assertBoardName(boardDTO, BoardDTO.NAME);
-//    }
+    @BeforeTest
+    public void createBoard() {
+        parameters.put("name", BoardDTO.NAME);
+        boardDTO = boardService.createBoard(parameters);
+        boardAssertions.assertBoardName(boardDTO, BoardDTO.NAME);
+    }
 
-//    @AfterTest
-//    public void deleteBoard() {
-//        Response response = boardService.deleteBoard(boardDTO.getId());
-//        boardAssertions.confirmBoardDeletedResponse(response);
-//    }
+    @AfterTest
+    public void deleteBoard() {
+        Response response = boardService.deleteBoard(boardDTO.getId());
+        boardAssertions.confirmBoardDeletedResponse(response);
+    }
 }
