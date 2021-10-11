@@ -49,7 +49,7 @@ public class CommonService extends URI {
             .when()
             .request(method, path)
             .then()
-            .statusCode(Matchers.greaterThanOrEqualTo(SC_OK))
+            .statusCode(Matchers.equalTo(SC_OK))
             .extract()
             .response();
     }
@@ -79,7 +79,7 @@ public class CommonService extends URI {
             .when()
             .request(method, path)
             .then()
-            .statusCode(Matchers.greaterThanOrEqualTo(SC_OK))
+            .statusCode(Matchers.equalTo(SC_OK))
             .extract()
             .response();
     }
