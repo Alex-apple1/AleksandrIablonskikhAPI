@@ -22,7 +22,7 @@ public class BaseTest {
     public ListDTO listDTO;
     public ListAssertions listAssertions = new ListAssertions();
     public ListService listService = new ListService();
-    public Map<String, String> bodyParametersForRegistration = new HashMap<>();
+    public Map<String, String> bodyParametersForListRegistration = new HashMap<>();
 
     @BeforeTest
     public void createBoard() {

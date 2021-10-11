@@ -3,6 +3,7 @@ package hw9.functional_level;
 import hw9.dto.BoardDTO;
 import hw9.data.DataProviders;
 import hw9.dto.ListDTO;
+import io.restassured.response.Response;
 import org.testng.annotations.Test;
 
 public class BoardTests extends BaseTest {
@@ -24,40 +25,38 @@ public class BoardTests extends BaseTest {
         boardAssertions.assertBoardName(boardDTO, BoardDTO.NAME);
     }
 
-    @Test(description = "Create, delete and check if board is deleted test from DataProvider",
+    @Test(description = "Create board, delete board and check if board is deleted test from DataProvider",
           dataProvider = "boardServiceDataProvider",
           dataProviderClass = DataProviders.class
     )
     public void createDeleteCheckIfBoardIsDeletedTest(String boardName) {
 
         String boardID = boardDTO.getId();
-        parameters.put("name", boardName);
-        boardDTO = boardService.updateBoard(parameters, boardID);
+        Response response = boardService.deleteBoard(boardID);
 
-        boardAssertions.assertBoardName(boardDTO, boardName);
+        boardAssertions.confirmBoardDeletedResponse(response);
     }
 
     @Test(description = "Create list, delete board and check result test")
     public void createListDeleteBoardTest() {
-        bodyParametersForRegistration.put("name", ListDTO.NAME);
-        bodyParametersForRegistration.put("idBoard", boardDTO.getId());
-        listDTO = listService.createList(bodyParametersForRegistration);
+        bodyParametersForListRegistration.put("name", ListDTO.NAME);
+        bodyParametersForListRegistration.put("idBoard", boardDTO.getId());
+        listDTO = listService.createList(bodyParametersForListRegistration);
+        Response response = boardService.deleteBoard(boardDTO.getId());
 
-        listAssertions.assertListName(listDTO, ListDTO.NAME);
+        listAssertions.confirmListDeletedResponse(response);
     }
 
-    @Test(description = "Create list, delete list and delete list again with result check test")
+    @Test(description = "Create list, delete list and check result test")
     public void createListDeleteListDeleteListAgainTest() {
-        String changedName = "ToDo test list changed";
-        bodyParametersForRegistration.put("name", ListDTO.NAME);
-        parameters.put("idBoard", boardDTO.getId());
 
-        listDTO = listService.createList(bodyParametersForRegistration);
-        String listID = listDTO.getId();
+        bodyParametersForListRegistration.put("name", ListDTO.NAME);
+        bodyParametersForListRegistration.put("idBoard", boardDTO.getId());
 
-        bodyParametersForRegistration.put("name", changedName);
-        listDTO = listService.updateList(listID, bodyParametersForRegistration);
+        listDTO = listService.createList(bodyParametersForListRegistration);
 
-        listAssertions.assertListName(listDTO, changedName);
+        Response response = listService.deleteList(listDTO.getId());
+
+        listAssertions.confirmListDeletedResponse(response);
     }
 }

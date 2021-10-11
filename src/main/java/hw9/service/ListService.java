@@ -29,7 +29,7 @@ public class ListService extends CommonService {
         return parseList(getWithParams(Method.PUT, LISTS_END_POINT + listID, params));
     }
 
-    public Response deleteList(String listID, Map<String, String> params) {
+    public Response deleteList(String listID) {
 
         return getNoParams(Method.DELETE, LISTS_END_POINT + listID);
     }
