@@ -1,8 +1,0 @@
-<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
-<suite name="hw9 TestSuit Rest assured">
-  <test name="hw9 Rest assured">
-    <packages>
-      <package name="hw9.functional_level" />
-    </packages>
-  </test>
-</suite>
