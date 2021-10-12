@@ -16,18 +16,18 @@ public class BaseTest {
 
     public BoardDTO boardDTO;
     public BoardService boardService = new BoardService();
-    public Map<String, String> parameters = new HashMap<>();
+    public Map<String, String> bodyParametersForBoardRegistration = new HashMap<>();
     public BoardAssertions boardAssertions = new BoardAssertions();
 
     public ListDTO listDTO;
-    public ListAssertions listAssertions = new ListAssertions();
     public ListService listService = new ListService();
     public Map<String, String> bodyParametersForListRegistration = new HashMap<>();
+    public ListAssertions listAssertions = new ListAssertions();
 
     @BeforeTest
     public void createBoard() {
-        parameters.put("name", BoardDTO.NAME);
-        boardDTO = boardService.createBoard(parameters);
+        bodyParametersForBoardRegistration.put("name", BoardDTO.NAME);
+        boardDTO = boardService.createBoard(bodyParametersForBoardRegistration);
         boardAssertions.assertBoardName(boardDTO, BoardDTO.NAME);
     }
 

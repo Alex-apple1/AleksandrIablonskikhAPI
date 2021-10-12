@@ -15,6 +15,7 @@
     <assertj-core.version>3.15.0</assertj-core.version>
     <lombok.version>1.18.10</lombok.version>
     <testOutputDirectory>${project.build.directory}/test-classes</testOutputDirectory>
+    <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
   </properties>
 
   <build>
@@ -22,9 +23,10 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
+        <version>${maven-compiler-plugin.version}</version>
         <configuration>
-          <source>8</source>
-          <target>8</target>
+          <source>1.8</source>
+          <target>1.8</target>
         </configuration>
       </plugin>
     </plugins>
