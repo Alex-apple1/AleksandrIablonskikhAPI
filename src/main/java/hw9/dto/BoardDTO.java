@@ -14,4 +14,5 @@ public class BoardDTO {
 
     private String id;
     private String name;
+    private boolean closed;
 }

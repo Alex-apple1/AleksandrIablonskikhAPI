@@ -16,4 +16,9 @@ public class BoardAssertions {
 
         assertNull(response.path("_value"));
     }
+
+    public void confirmBoardIsNotClosed(BoardDTO boardDTO, boolean expected) {
+
+        assertEquals(boardDTO.isClosed(), expected);
+    }
 }

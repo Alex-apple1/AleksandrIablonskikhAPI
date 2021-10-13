@@ -16,12 +16,14 @@ public class BoardTests extends BaseTest {
         boardAssertions.assertBoardName(boardDTO, BoardDTO.NAME);
     }
 
-    @Test(description = "Create board, get board and assert first board name test")
+    // added assertion that Board is not closed
+    @Test(description = "Create board, get board, ASSERT IF BOARD IS NOT CLOSED and assert first board name test")
     public void createBoardGetAssertBoardNameTest() {
 
         String boardID = boardDTO.getId();
         boardDTO = boardService.getBoard(boardID);
-
+        // NEW ASSERTION
+        boardAssertions.confirmBoardIsNotClosed(boardDTO, false);
         boardAssertions.assertBoardName(boardDTO, BoardDTO.NAME);
     }
 
@@ -48,13 +50,16 @@ public class BoardTests extends BaseTest {
         listAssertions.confirmListDeletedResponse(response);
     }
 
-    @Test(description = "Create list, delete list and check result test")
+    // added assertion that List is not closed
+    @Test(description = "Create list, delete list ASSERT THAT LIST IS NOT CLOSED and check result test")
     public void createListDeleteListTest() {
 
         bodyParametersForListRegistration.put("name", ListDTO.NAME);
         bodyParametersForListRegistration.put("idBoard", boardDTO.getId());
 
         listDTO = listService.createList(bodyParametersForListRegistration);
+        // NEW ASSERTION
+        listAssertions.confirmListIsNotClosed(listDTO, false);
 
         Response response = listService.deleteList(listDTO.getId());
 
@@ -91,6 +96,4 @@ public class BoardTests extends BaseTest {
 
         boardAssertions.assertBoardName(boardDTO, newBoardName);
     }
-
-
 }

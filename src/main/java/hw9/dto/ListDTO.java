@@ -15,4 +15,5 @@ public class ListDTO {
     private String id;
     private String name;
     private String idBoard;
+    private boolean closed;
 }
